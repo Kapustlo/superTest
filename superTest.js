@@ -116,11 +116,8 @@ class Patterns {
 			if (attr != 'tag') {
 				DOM[attr] = element[attr];
 
-				if (attr == 'style') {
-					for (let css in attr){
-						DOM.style.css = attr[css];
-					}
-				}
+				if (attr == 'style') for (let css in attr){DOM.style.css = attr[css];}
+
 			}
 		}
 
@@ -139,14 +136,10 @@ class Board extends Patterns {
 			element: undefined, // The board DOM element
 			clear: (time) => {
 				let children = this.container.element.children;
-				for (let i = 0; i < children.length; i++) {
-					this.fadeOut(children[i]);
-				}
+				for (let i = 0; i < children.length; i++) {this.fadeOut(children[i]);}
 
 				setTimeout( () => {
-					while (this.container.element.firstChild) {
-						this.container.element.firstChild.remove();
-					}		
+					while (this.container.element.firstChild) {this.container.element.firstChild.remove();}		
 				}, time);
 			},
 			show: (time) => {
@@ -166,9 +159,7 @@ class Board extends Patterns {
 	        if (element.style.opacity < 1) {
 	            element.style.opacity = Number(element.style.opacity) + counter;
 	        } else {
-	        	if(element.style.opacity > 1) {
-	        		element.style.opacity = 1;
-	        	}
+	        	if (element.style.opacity > 1) element.style.opacity = 1;
 	            clearInterval(interval);
 	        }
 	    },this.fadeInTime * counter);
@@ -182,9 +173,7 @@ class Board extends Patterns {
 	        if (element.style.opacity > 0) {
 	            element.style.opacity = Number(element.style.opacity) - counter;
 	        } else {
-	        	if(element.style.opacity < 0) {
-	        		element.style.opacity = 0;
-	        	}
+	        	if(element.style.opacity < 0) element.style.opacity = 0;
 	            clearInterval(interval);
 	        }
 	    },this.fadeOutTime * counter);
@@ -223,9 +212,7 @@ class superTest extends Board {
 		this.styles = {
 			'btnNextInnerHtml': 'Next'
 		}
-		for (let style in styles) {
-			this.styles[style] = styles[style];
-		}
+		for (let style in styles) {this.styles[style] = styles[style];}
 	}
 
 	start () {
@@ -251,14 +238,10 @@ class superTest extends Board {
 			this.container.clear(1000);
 			setTimeout( () => {
 				this.container.element.remove();
-				if (typeof this.callback == 'function') {
-					this.callback(response);
-				}
+				if (typeof this.callback == 'function') this.callback(response);
 			},1001);
 		} else {
-			if (typeof this.callback == 'function') {
-				this.callback(response)
-			}
+			if (typeof this.callback == 'function') this.callback(response);
 		}
 
 		
@@ -274,9 +257,7 @@ class superTest extends Board {
 			// Removing on click functions
 			let children = this.container.element.children;
 			for (let child in children) {
-				if (typeof children[child] == 'object') {
-					children[child].onlick = null;
-				}
+				if (typeof children[child] == 'object') children[child].onlick = null;
 			}
 			let val = this.stepDesc[this.curStep - 1]['content'][value]; // Here we basically get the score
 			if (this.type == 'score') {
